@@ -1,3 +1,9 @@
+/*Global Styles*/
+*, *::before, *::after {
+     -moz-box-sizing: border-box;
+     -webkit-box-sizing: border-box;
+     box-sizing: border-box;
+ }
 html {
   height: 100%;
   font-size: 100%;
@@ -9,14 +15,11 @@ body {
   min-height: 100%;
 }
 
-body.landing {
-  background-color: rgb(58,23,63);
+.navbar {
+    padding: 0.5rem;
+    background-color: rgb(101,18,95);
 }
 
-.navbar{
-  padding: .5rem;
-  background-color: rgb(101,18,95);
-}
 .navbar .logo{
   position: relative;
   left: 2rem;
@@ -81,4 +84,3 @@ body.landing {
   color: rgb(233,50,117);
   font-size: 5rem;
 }
-
