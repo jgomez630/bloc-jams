@@ -43,28 +43,17 @@ body.landing {
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0.5rem;
-<<<<<<< HEAD
   text-shadow: 1px 1px 0px rgb(58,23,63);
-=======
-text-shadow: 1px 1px 0px rgb(58,23,63);
->>>>>>> 41cb38a1798b3b0721ae58a57d846c5ecf277d6e
 }
 .selling-points{
   position: relative;
   display: table;
   width: 100%;
-<<<<<<< HEAD
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
      box-sizing: border-box;
 }
 
-=======
- -webkit-box-sizing: border-box;
- -moz-box-sizing: border-box;
-  box-sizing: border-box; 
-}
->>>>>>> 41cb38a1798b3b0721ae58a57d846c5ecf277d6e
 .point{
   display: table-cell;
   position: relative;
@@ -72,7 +61,6 @@ text-shadow: 1px 1px 0px rgb(58,23,63);
   padding: 2rem;
   text-align: center;
 }
-<<<<<<< HEAD
 .point .point-title {
   font-size: 1.25rem;
 }
@@ -83,7 +71,7 @@ text-shadow: 1px 1px 0px rgb(58,23,63);
      color: rgb(233,50,117);
      font-size: 5rem;
  }
-=======
+
 .point .point-title{
   font-size: 1.25rem;
 }
@@ -93,4 +81,4 @@ text-shadow: 1px 1px 0px rgb(58,23,63);
   color: rgb(233,50,117);
   font-size: 5rem;
 }
->>>>>>> 41cb38a1798b3b0721ae58a57d846c5ecf277d6e
+
