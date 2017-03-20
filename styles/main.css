@@ -87,6 +87,7 @@ body {
  margin: 0 auto;
   max-width: 64rem;
 }
+/* --------Media Queries ---------*/
 /*Medium & small screens*/
 @media (min-width: 640px){
   html{font-size: 112%;} 
