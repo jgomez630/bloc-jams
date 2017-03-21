@@ -14,14 +14,43 @@ body {
   color: white;
   min-height: 100%;
 }
-
 .navbar {
-    padding: 0.5rem;
-    background-color: rgb(101,18,95);
+  position: relative;
+  padding: .5rem;
+  background-color: rgba(101,18,95,.5);
+  z-index: 1;
 }
 .navbar .logo{
   position: relative;
   left: 2rem;
+  cursor: pointer;
+}
+.navbar .links-container{
+  display:table;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100px;
+  color: white;
+  text-decoration: none;
+}
+.links-container .navbar-link{
+  display: table-cell;
+  position: relative;
+  height: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  vertical-align: middle;
+  color: white;
+  font-size: 0.625rem;
+  letter-spacing: 0.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+.links-container .navbar-link:hover{
+  color: rgb(233,50,117);
 }
 .hero-content{
   position: relative;
@@ -51,9 +80,9 @@ body {
   position: relative;
   display: table;
   width: 100%;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-     box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box;
+ box-sizing: border-box;
 }
 
 .point{
@@ -70,8 +99,8 @@ body {
 .ion-music-note,
 .ion-radio-waves,
 .ion-iphone {
-     color: rgb(233,50,117);
-     font-size: 5rem;
+   color: rgb(233,50,117);
+   font-size: 5rem;
  }
 
 .point .point-title{
@@ -84,7 +113,7 @@ body {
   font-size: 5rem;
 }
 .container{
- margin: 0 auto;
+  margin: 0 auto;
   max-width: 64rem;
 }
 /* --------Media Queries ---------*/
