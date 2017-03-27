@@ -1,10 +1,8 @@
 /*landing js animatePoints refactored*/
-
-var animatePoints = function() {
+var pointsArray = document.getElementsByClassName('point');
+var animatePoints = function(points) {
  
-  var points = document.getElementsByClassName('point');
-
-  var revealFirstPoint = function(index) {
+  var revealPoint = function(index) {
      points[index].style.opacity = 1;
      points[index].style.transform = "scaleX(1) translateY(0)";
      points[index].style.msTransform = "scaleX(1) translateY(0)";
@@ -14,3 +12,13 @@ var animatePoints = function() {
     revealPoint(i);
   }
 };
+window.onload = function(){
+  var sellingPoints = document.getElementsByClassName('selling-points')[0];  
+  var scrollDistance = sellingPoints.getBoundingClientRect().top - window.innerHeight + 300;
+ 
+  window.addEventListener('scroll', function(event){
+    if(document.documentElement.scrollTop || document.body.scrollTop >= scrollDistance){
+      animatePoints(pointsArray);
+    }
+  });
+}
