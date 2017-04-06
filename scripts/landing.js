@@ -11,8 +11,12 @@ var revealPoint = function(point) {
 var animatePoints = function(points) {
  forEach(points,revealPoint);
  };
-
+//trigger animation on scrolls at least 200 pixels
 window.onload = function(){
+  var sellingPoints = document.getElementsByClassName('selling-points')[0];
+  var scrollDistance = sellingPoints.getBoundingClientRect().top - window.innerHeight + 200;
+  
+  // animate selling-points on taller screen
   if(window.innerHeight > 950){
     animatePoints(pointsArray);  
   }  
