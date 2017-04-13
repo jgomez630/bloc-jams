@@ -18,7 +18,7 @@ window.onload = function(){
   
   collectionContainer.innerHTML = '';
   
-  for (var i = 0; i < 21; i++){
+  for (var i = 0; i < 12; i++){
     collectionContainer.innerHTML += collectionItemTemplate;
   }
 }
