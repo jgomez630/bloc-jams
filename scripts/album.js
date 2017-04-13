@@ -69,7 +69,7 @@ var setCurrentAlbum = function(album){
   albumArtist.firstChild.nodeValue = album.artist;
   albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
   albumImage.setAttribute('src',album.albumArtUrl);
-
+  
   //Clear contents of album song list
   albumSongList.innerHTML = ' ';
   
@@ -78,6 +78,35 @@ var setCurrentAlbum = function(album){
     albumSongList.innerHTML += createSongRow(i+ 1, album.songs[i].title,album.songs[i].duration);
   }
 };
+
+/*Change the Song Number to a Pause Button*/  
+  var findParentByClassName = function(element, targetClass) {
+    if (element) {
+        var currentParent = element.parentElement;
+        while (currentParent.className !== targetClass && currentParent.className !== null) {
+            currentParent = currentParent.parentElement;
+        }
+        return currentParent;
+    }
+};
+/*getSongItem() Method*/
+  var getSongItem = function(element) {
+    switch (element.className) {
+        case 'album-song-button':
+        case 'ion-play':
+        case 'ion-pause':
+            return findParentByClassName(element, 'song-item-number');
+        case 'album-view-song-item':
+            return element.querySelector('.song-item-number');
+        case 'song-item-title':
+        case 'song-item-duration':
+            return findParentByClassName(element, 'album-view-song-item').querySelector('.song-item-number');
+        case 'song-item-number':
+            return element;
+        default:
+            return;
+    }  
+};  
 
 //Event listener album toggle
 //stores the DOM element for the eventListener
@@ -126,36 +155,6 @@ songListContainer.addEventListener('mouseover',function(event){
      }
   });
 };
-
-  /*Change the Song Number to a Pause Button*/  
-  var findParentByClassName = function(element, targetClass) {
-    if (element) {
-        var currentParent = element.parentElement;
-        while (currentParent.className !== targetClass && currentParent.className !== null) {
-            currentParent = currentParent.parentElement;
-        }
-        return currentParent;
-    }
-};
-
-/*getSongItem() Method*/
-  var getSongItem = function(element) {
-    switch (element.className) {
-        case 'album-song-button':
-        case 'ion-play':
-        case 'ion-pause':
-            return findParentByClassName(element, 'song-item-number');
-        case 'album-view-song-item':
-            return element.querySelector('.song-item-number');
-        case 'song-item-title':
-        case 'song-item-duration':
-            return findParentByClassName(element, 'album-view-song-item').querySelector('.song-item-number');
-        case 'song-item-number':
-            return element;
-        default:
-            return;
-    }  
-};  
 
 var clickHandler = function(targetElement) {
   var songItem = getSongItem(targetElement); 
