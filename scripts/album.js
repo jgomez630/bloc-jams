@@ -15,18 +15,19 @@ var createSongRow = function(songNumber,songName,songLength){
     var songNumber = $(this).attr('data-song-number');
     
     if(currentlyPlayingSong !== null){
-// Revert to song number for currently playing song because user started playing new song.      
+// Revert to song number for currently playing song 
       var currentlyPlayingCell = $('.song-item-number[data-song-number="' + currentlyPlayingSong + '"]');
-      currentlyPlayingCell.html(currentlyPlayingSong);
+      currentlyPlayingCell.html(currentlyPlayingSongNumber);
     }
     if(currentlyPlayingSong !== songNumber){
 // Switch from Play -> Pause button to indicate new song is playing.
       $(this).html(pauseButtonTemplate);
-      currentlyPlayingSong = songNumber;
-    } else if (currentlyPlayingSong === songNumber){
+      currentlyPlayingSongNumber = songNumber;
+    } else if (currentlyPlayingSongNumber === songNumber){
 // Switch from Pause -> Play button to pause currently playing song.
       $(this).html(playButtonTemplate);
-      currentlyPlayingSong = null;
+      currentlyPlayingSongNumber = null;
+      currentSongFromAlbum = null;
     }
   };
   
@@ -34,7 +35,7 @@ var createSongRow = function(songNumber,songName,songLength){
     var songNumberCell = $(this).find('.song-item-number');
     var songNumber = songNumberCell.attr('data-song-number');
     
-    if (songNumber !== currentlyPlayingSong){
+    if (songNumber !== currentlyPlayingSongNumber){
       songNumberCell.html(playButtonTemplate);
     }                                     
   };
@@ -42,7 +43,7 @@ var createSongRow = function(songNumber,songName,songLength){
     var songNumberCell = $(this).find('.song-item-number');
     var songNumber = songNumberCell.attr('data-song-number');
     
-    if (songNumber !== currentlyPlayingSong){
+    if (songNumber !== currentlyPlayingSongNumber){
       songNumberCell.html(songNumber);
     }
   };
@@ -53,7 +54,7 @@ var createSongRow = function(songNumber,songName,songLength){
 };
 /*function "setCurrentAlbum" called when the window loads*/
 var setCurrentAlbum = function(album){
-
+  currentAlbum = album;
 //jQuery version: Select elements to populate with text dynamically
   var $albumTitle = $('.album-view-title');
   var $albumArtist = $('.album-view-artist');
@@ -82,8 +83,10 @@ var setCurrentAlbum = function(album){
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
 var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
 
- // Store state of playing songs
- var currentlyPlayingSong = null;
+//stores current song & album information
+var currentAlbum = null;
+var currentlyPlayingSongNumber = null;
+var currentSongFromAlbum = null;
 
 $(document).ready(function(){
   setCurrentAlbum(albumPicasso);
