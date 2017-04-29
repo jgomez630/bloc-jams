@@ -209,7 +209,8 @@ var nextSong = function() {
     currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
    // Update the Player Bar information
     updatePlayerBarSong();
-
+  updateSeekBarWhileSongPlays();
+  
     var $nextSongNumberCell = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
     var $lastSongNumberCell = $('.song-item-number[data-song-number="' + lastSongNumber + '"]');
 
@@ -235,7 +236,7 @@ var previousSong = function() {
     currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
     // Update the Player Bar information
     updatePlayerBarSong();
-    
+    updateSeekBarWhileSongPlays();
   $('.main-controls .play-pause').html(playerBarPauseButton);
 
     var $previousSongNumberCell = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
@@ -250,7 +251,7 @@ var updatePlayerBarSong = function(){
   $('.currently-playing .artist-name').text(currentAlbum.artist);
   $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
   $('.main-controls .play-pause').html(playerBarPauseButton);
-  setTotalTimeInPlayerBar(filterTimeCode(currentSongFromAlbum.length));
+  setTotalTimeInPlayerBar(filterTimeCode(currentSongFromAlbum.duration));
 };
 
 // Play & Pause button templates
@@ -270,8 +271,13 @@ var $nextButton = $('.main-controls .next');
 var $playPause = $('.main-controls .play-pause');
 
 var togglePlayFromPlayerBar = function(){
- var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
- if (currentSoundFile.isPaused()) {
+ if(currentlyPlayingSongNumber === null){
+   setSong(1);
+   updatePlayerBarSong();
+   updateSeekBarWhileSongPlays();
+ }
+  var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
+   if (currentSoundFile.isPaused()) {
         currentlyPlayingCell.html(pauseButtonTemplate);
         $(this).html(playerBarPauseButton);
         currentSoundFile.play();
@@ -281,6 +287,15 @@ var togglePlayFromPlayerBar = function(){
         currentSoundFile.pause();
   }    
 };
+document.body.onkeyup = function(e){
+    if(e.keyCode == 32){
+      $playPause.trigger('click');  
+    }else if(e.keyCode == 37){
+      $previousButton.trigger('click');
+    }else if(e.keyCode == 39){
+      $nextButton.trigger('click');
+    }
+}
 var setCurrentTimeInPlayerBar = function(currentTime) {
   var $currentTimeElement = $('.seek-control .current-time');
   $currentTimeElement.text(currentTime); 
